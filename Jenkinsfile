@@ -7,6 +7,7 @@ pipeline{
     }
     environment {
         CI = 'true'
+        HOME = '${WORKSPACE}'
     }
     stages{
         stage('Build') {
@@ -16,7 +17,8 @@ pipeline{
         }
         stage('Test') {
             steps {
-                sh 'sudo scripts/test.sh'
+                sh 'chmod +x -R ${env.WORKSPACE}'
+                sh 'scripts/test.sh'
             }
         }
         stage('Delivery for development') {
