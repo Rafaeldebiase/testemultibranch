@@ -16,9 +16,6 @@ pipeline{
         }
         stage('Test') {
             steps {
-                script {
-                    dockerImage
-                }
                 sh 'scripts/test.sh'
             }
         }
