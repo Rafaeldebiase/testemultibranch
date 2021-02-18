@@ -26,6 +26,8 @@ pipeline{
                 branch 'development'
             }
             steps {
+                sh 'chmod +rx scripts/deliver-for-development.sh'
+                sh 'chmod +rx script/kill.sh'
                 sh 'scripts/deliver-for-development.sh'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 sh 'scripts/kill.sh'
@@ -36,9 +38,11 @@ pipeline{
                 branch 'production'
             }
             steps {
-                sh './jenkins/scripts/deploy-for-production.sh'
+                sh 'chmod +rx scripts/deploy-for-production.sh'
+                sh 'chmod +rx scripts/kill.sh'
+                sh 'scripts/deploy-for-production.sh'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh './jenkins/scripts/kill.sh'
+                sh 'scripts/kill.sh'
             }
         }
     }
