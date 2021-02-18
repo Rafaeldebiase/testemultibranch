@@ -8,7 +8,6 @@ pipeline{
     environment {
         CI = 'true'
     }
-    stages {
         stage('Build') {
             steps {
                 sh 'npm install'
@@ -16,7 +15,9 @@ pipeline{
         }
         stage('Test') {
             steps {
-                echo "====++++testando++++===="
+                script {
+                    dockerImage
+                }
                 sh 'scripts/test.sh'
             }
         }
@@ -40,6 +41,5 @@ pipeline{
                 sh './jenkins/scripts/kill.sh'
             }
         }
-    }
-    
 }
+    
