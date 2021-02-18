@@ -18,7 +18,7 @@ pipeline{
         stage('Test') {
             steps {
                 sh 'chmod +rx scripts/test.sh'
-                sh 'scripts/test.sh'
+                // sh 'scripts/test.sh'
             }
         }
         stage('Delivery for development') {
