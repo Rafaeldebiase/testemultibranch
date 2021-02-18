@@ -1,7 +1,7 @@
 pipeline{
     agent{
         docker {
-            image 'node:6-alpine'
+            image 'node:current-alpine3.13'
             args '-p 3000:3000 -p 5000:5000'
         }
     }
@@ -11,7 +11,7 @@ pipeline{
     stages {
         stage('Build') {
             steps {
-                sh 'sudo chown -R `whoami` /usr/local'
+                sh 'npm init'
                 sh 'npm install'
             }
         }
